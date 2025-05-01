@@ -31,10 +31,7 @@ Net Start ClusSvc /FQ
 try to bring up the database and check the Always-On status
 
 
-try to restart the service of SQL Server 
-
-
-now databases are now in a different status 
+If you restarted the service of the SQL, databases in the current node will turn into recovery pendingn
 
 
 to resolve it force failover allow data loss on the previous primary node (AlwaysOn2)
