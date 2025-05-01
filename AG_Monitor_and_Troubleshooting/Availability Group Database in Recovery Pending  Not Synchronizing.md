@@ -7,21 +7,21 @@ In case of the AG was configured as automatic failover or not?
 Dashboard for the 3 node and the primary is the node 2
 
 
-initiate the issue
+Initiate the issue
 
-now we have lost the primary node (AlwaysOn2) because the public network card went down
+Now, we have lost the primary node (AlwaysOn2) because the public network card went down
 
-and the cluster service (ClusSvc) goes down either
+So, the cluster service (ClusSvc) goes down either
 
-turn on the public card
+Turn on the public card
 
-try to start the cluster service normally
+Try to start the cluster service normally
 ```powershell
 Net Start ClusSvc
 
 ```
 
-then start it using force quorum
+If it refuse to come up normally, then start it using force quorum
 
 ```powershell
 Net Start ClusSvc /FQ
