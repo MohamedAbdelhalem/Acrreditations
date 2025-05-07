@@ -1,6 +1,6 @@
 **WorkshopPLUS - SQL Server: AlwaysOn Availability Groups and Failover Cluster Instances** - *Monitoring and Troubleshooting* `20240528`
 
-[**mykyta777**](https://mslearningcampus.com/LabSeries/19855)
+[**Here**](https://mslearningcampus.com/LabSeries/19855)
 
 
 **SQL Server 2016 Always On Availability Groups Guide** `Architectural Overview and Best Practices`
