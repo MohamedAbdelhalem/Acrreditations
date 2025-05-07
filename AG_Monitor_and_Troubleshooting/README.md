@@ -13,4 +13,4 @@ https://microsoft.sharepoint.com/:w:/r/teams/CampusIPLibraries/Campus/_layouts/1
 
 ## important node
 
-SQL Server Failover Cluster Instances **(FCIs) do not support automatic failover by availability groups**, so any availability replica that is hosted by an FCI can only be configured for manual failover.
+SQL Server Failover Cluster Instances **`FCIs` do not support automatic failover by availability groups**, so any availability replica that is hosted by an FCI can only be configured for manual failover.
