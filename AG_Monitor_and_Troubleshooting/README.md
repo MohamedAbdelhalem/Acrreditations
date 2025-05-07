@@ -8,3 +8,17 @@
 
 > [!Note]
 > SQL Server Failover Cluster Instances **`FCIs` do not support automatic failover by availability groups**, so any availability replica that is hosted by an FCI can only be configured for manual failover.
+
+```sql
+SELECT database_name, is_failover_ready, case is_failover_ready 
+when 0 then ':CONNECT '+replica_server_name+' ALTER AVAILABILITY GROUP ['+ag.name+'] FORCE_FAILOVER_ALLOW_DATA_LOSS' 
+when 1 then ':CONNECT '+replica_server_name+' ALTER AVAILABILITY GROUP ['+ag.name+'] FAILOVER'
+end 
+FROM sys.dm_hadr_database_replica_cluster_states dbr inner join sys.dm_hadr_availability_replica_states r
+on dbr.replica_id = r.replica_id
+inner join sys.dm_hadr_availability_replica_cluster_states arc
+on arc.replica_id = r.replica_id
+inner join sys.availability_groups ag
+on r.group_id = ag.group_id
+where r.is_local = 1
+```
