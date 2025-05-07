@@ -11,6 +11,6 @@ https://microsoft.sharepoint.com/:w:/r/teams/CampusIPLibraries/Campus/Community%
 
 https://microsoft.sharepoint.com/:w:/r/teams/CampusIPLibraries/Campus/_layouts/15/Doc.aspx?sourcedoc=%7B7E599E1B-DEDF-4C25-88DE-0860DCA92080%7D&file=Force%20Quorum%20for%20a%20SQL%20Server%202012%20Availability%20Group_new.docx&action=default&mobileredirect=true&DefaultItemOpen=1
 
-> [!Note]
+> [!Important Node]
 > SQL Server Failover Cluster Instances **`FCIs` do not support automatic failover by availability groups**, so any availability replica that is hosted by an FCI can only be configured for manual failover.
 
