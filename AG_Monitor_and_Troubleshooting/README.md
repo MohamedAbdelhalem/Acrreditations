@@ -39,11 +39,12 @@ from (
 select id,
 d.login_name, deny_login, has_access, is_disabled, isnull([permission_name],'NA') currnet_permission, permissions all_permission, state_desc
 from (values 
-('NT AUTHORITY\SYSTEM','ALTER ANY AVAILABILITY GROUP'),
-('NT AUTHORITY\SYSTEM','CREATE AVAILABILITY GROUP'),
-('NT AUTHORITY\SYSTEM','CONNECT SQL'),
-('NT AUTHORITY\SYSTEM','VIEW ANY DATABASE'),
-('NT AUTHORITY\SYSTEM','VIEW SERVER STATE')) d([login_name],[permissions]) left outer join
+('NT AUTHORITY\SYSTEM','ALTER ANY AVAILABILITY GROUP'), --mandatory
+('NT AUTHORITY\SYSTEM','CREATE AVAILABILITY GROUP'),    --best practice
+('NT AUTHORITY\SYSTEM','CONNECT SQL'),                  --mandatory
+('NT AUTHORITY\SYSTEM','VIEW ANY DATABASE'),            --best practice
+('NT AUTHORITY\SYSTEM','VIEW SERVER STATE')             --mandatory
+) d([login_name],[permissions]) left outer join
 (
 select row_number() over(order by l.name) id,
 l.name login_name,
