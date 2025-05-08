@@ -30,9 +30,21 @@ case id when 1 then login_name else '~~~' end login_name,
 case id when 1 then deny_login else '~~~' end deny_login,
 case id when 1 then has_access else '~~~' end has_access,
 case id when 1 then is_disabled else '~~~' end is_disabled,
-permission_name, state_desc, case state_desc 
-when 'DENY' then 'GRANT '+[permission_name] collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+']' end hot_fix
+currnet_permission, all_permission, state_desc, case  
+when state_desc = 'DENY' then 'GRANT '+all_permission collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+']' 
+when state_desc is NULL then 'GRANT '+all_permission collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+']' 
+else ''
+end hot_fix
 from (
+select id,
+d.login_name, deny_login, has_access, is_disabled, isnull([permission_name],'NA') currnet_permission, permissions all_permission, state_desc
+from (values 
+('NT AUTHORITY\SYSTEM','ALTER ANY AVAILABILITY GROUP'),
+('NT AUTHORITY\SYSTEM','CREATE AVAILABILITY GROUP'),
+('NT AUTHORITY\SYSTEM','CONNECT SQL'),
+('NT AUTHORITY\SYSTEM','VIEW ANY DATABASE'),
+('NT AUTHORITY\SYSTEM','VIEW SERVER STATE')) d([login_name],[permissions]) left outer join
+(
 select row_number() over(order by l.name) id,
 l.name login_name,
 cast(l.denylogin as char(1)) deny_login,
@@ -44,4 +56,5 @@ from sys.server_principals sp inner join sys.syslogins sl
 on sp.sid = sl.sid
 where sp.name = 'NT AUTHORITY\SYSTEM')l
 on sp.grantee_principal_id = l.principal_id)t
+on d.[permissions] = t.permission_name) fr
 ```
