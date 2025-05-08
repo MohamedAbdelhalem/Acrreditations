@@ -22,3 +22,26 @@ inner join sys.availability_groups ag
 on r.group_id = ag.group_id
 where r.is_local = 1
 ```
+
+```sql
+
+select 
+case id when 1 then login_name else '~~~' end login_name,
+case id when 1 then deny_login else '~~~' end deny_login,
+case id when 1 then has_access else '~~~' end has_access,
+case id when 1 then is_disabled else '~~~' end is_disabled,
+permission_name, state_desc, case state_desc 
+when 'DENY' then 'GRANT '+[permission_name] collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+'] end hot_fix
+from (
+select row_number() over(order by l.name) id,
+l.name login_name,
+cast(l.denylogin as char(1)) deny_login,
+cast(l.hasaccess as char(1)) has_access,
+cast(l.is_disabled as char(1)) is_disabled,
+sp.permission_name, sp.state_desc
+from sys.server_permissions sp inner join (select sp.name, sl.denylogin, sl.hasaccess, sp.principal_id, sp.is_disabled
+from sys.server_principals sp inner join sys.syslogins sl
+on sp.sid = sl.sid
+where sp.name = 'NT AUTHORITY\SYSTEM')l
+on sp.grantee_principal_ud = l.principal_id)t
+```
