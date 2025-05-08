@@ -23,6 +23,8 @@ on r.group_id = ag.group_id
 where r.is_local = 1
 ```
 
+
+To check on `NT AUTHORITY\SYSTEM` system user permissions
 ```sql
 
 select 
