@@ -31,7 +31,7 @@ case id when 1 then deny_login else '~~~' end deny_login,
 case id when 1 then has_access else '~~~' end has_access,
 case id when 1 then is_disabled else '~~~' end is_disabled,
 permission_name, state_desc, case state_desc 
-when 'DENY' then 'GRANT '+[permission_name] collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+'] end hot_fix
+when 'DENY' then 'GRANT '+[permission_name] collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+']' end hot_fix
 from (
 select row_number() over(order by l.name) id,
 l.name login_name,
@@ -43,5 +43,5 @@ from sys.server_permissions sp inner join (select sp.name, sl.denylogin, sl.hasa
 from sys.server_principals sp inner join sys.syslogins sl
 on sp.sid = sl.sid
 where sp.name = 'NT AUTHORITY\SYSTEM')l
-on sp.grantee_principal_ud = l.principal_id)t
+on sp.grantee_principal_id = l.principal_id)t
 ```
