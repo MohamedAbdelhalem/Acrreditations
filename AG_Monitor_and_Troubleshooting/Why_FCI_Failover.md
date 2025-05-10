@@ -2,6 +2,10 @@ SQL Server was stopped using
 
 ```cmd
 NET STOP MSSQL$INST1 /Y
+#Or
+Stop-Process -Name sqlservr -Force
+#Or
+Stop-Service -Name 'MSSQL$INST1' -Force
 ```
 
 Simulation failure to test automatic `failover`
