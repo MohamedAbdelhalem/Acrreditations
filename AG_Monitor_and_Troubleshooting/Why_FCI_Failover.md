@@ -4,7 +4,7 @@ SQL Server was stopped using
 NET STOP MSSQL$INST1 /Y
 ```
 
-Simulation
+Simulation failure to test automatic `failover`
 
 ```powershell
 $loop = 0
