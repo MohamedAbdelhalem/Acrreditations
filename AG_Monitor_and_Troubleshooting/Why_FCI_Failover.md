@@ -1,6 +1,6 @@
 SQL Server was stopped using
 
-```cmd
+```powershell
 NET STOP MSSQL$INST1 /Y
 #Or
 Stop-Process -Name sqlservr -Force
