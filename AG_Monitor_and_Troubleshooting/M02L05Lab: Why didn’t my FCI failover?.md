@@ -27,7 +27,7 @@ $table | Format-Table
 To fix it and add the missing `Possible Owner Nodes`
 
 ```powershell
-$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN13")
+$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")
 $group = "SQL Server (INST1)"
 $type = "Physical Disk" #or "*"
 
