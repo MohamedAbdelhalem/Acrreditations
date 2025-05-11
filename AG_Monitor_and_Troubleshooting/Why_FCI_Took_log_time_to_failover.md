@@ -25,6 +25,28 @@ from #loginfo
 ```
 if your SQL Server version is equal of higher then just use this DMF `sys.dm_db_log_info`
 
+So, the VLF summary, run the below query:
+
+```sql
+select db_name(mf.database_id) database_name, mf.name, mf.physical_name,
+cast((size * 8.0) / 1024.0 / 1024.0 as decimal(10,2)) size_gb,
+cast((growth * 8.0) / 1024.0 / 1024.0 as decimal(10,2)) growth_gb,
+format(vlf_count,'###,###,###') vlf_count,
+min_vlf_size_mb, avg_vlf_size_mb, max_vlf_size_mb
+from sys.master_files mf cross apply (select count(*) vlf_count, database_id, file_id,
+cast(min(i.vlf_size_mb) as decimal(10,2)) min_vlf_size_mb,
+cast(avg(i.vlf_size_mb) as decimal(10,2)) avg_vlf_size_mb,
+cast(max(i.vlf_size_mb) as decimal(10,2)) max_vlf_size_mb
+from sys.dm_db_log_info(mf.database_id) i
+group byy database_id, file_id) info
+where mf.database_id > 4
+and mf.database_id = info.database_id
+and mf.type = 1
+```
+
+
+
+
 create this function to convert `LSN`
 
 ```sql
