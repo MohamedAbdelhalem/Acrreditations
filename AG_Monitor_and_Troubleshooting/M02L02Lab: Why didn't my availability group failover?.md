@@ -5,9 +5,9 @@ To find out the missing permissions, run the below query:
 ```sql
 
 select 
-case id when 1 then login_name else '~~~' end login_name,
-case id when 1 then deny_login else '~~~' end deny_login,
-case id when 1 then has_access else '~~~' end has_access,
+case id when 1 then login_name  else '~~~' end login_name,
+case id when 1 then deny_login  else '~~~' end deny_login,
+case id when 1 then has_access  else '~~~' end has_access,
 case id when 1 then is_disabled else '~~~' end is_disabled,
 currnet_permission, all_permission, state_desc, case  
 when state_desc = 'DENY' then 'GRANT '+all_permission collate SQL_Latin1_General_CP1_CI_AS+' TO ['+login_name+']' 
