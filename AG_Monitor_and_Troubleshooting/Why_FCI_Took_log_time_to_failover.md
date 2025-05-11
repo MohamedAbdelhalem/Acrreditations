@@ -28,9 +28,18 @@ if your SQL Server version is equal of higher then just use this DMF `sys.dm_db_
 So, for `VLF analysis`, run the below query:
 
 ```sql
+declare @db_log_info table (database_id int, file_id int, space_used bigint)
+insert into @db_log_info
+exec sp_MSforeachDB 'use [?]
+select db_id(''?'') database_id, file_id, fileproperty(name, 'spaceused')
+from sys.database_files
+where type = 1'
+
 select db_name(mf.database_id) database_name, mf.name, mf.physical_name,
 cast((size * 8.0) / 1024.0 / 1024.0 as decimal(10,2)) size_gb,
 cast((growth * 8.0) / 1024.0 / 1024.0 as decimal(10,2)) growth_gb,
+cast((lu.space_used * 8.0) / 1024.0 / 1024.0 as decimal(10,2)) space_used_gb,
+cast(((size - lu.space_used) * 8.0) / 1024.0 / 1024.0 as decimal(10,2)) free_size_gb,
 format(vlf_count,'###,###,###') vlf_count,
 min_vlf_size_mb, avg_vlf_size_mb, max_vlf_size_mb
 from sys.master_files mf cross apply (select count(*) vlf_count, database_id, file_id,
@@ -39,6 +48,8 @@ cast(avg(i.vlf_size_mb) as decimal(10,2)) avg_vlf_size_mb,
 cast(max(i.vlf_size_mb) as decimal(10,2)) max_vlf_size_mb
 from sys.dm_db_log_info(mf.database_id) i
 group byy database_id, file_id) info
+inner join @db_log_info lu
+on mf.database_id = lu.database_id
 where mf.database_id > 4
 and mf.database_id = info.database_id
 and mf.type = 1
