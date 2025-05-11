@@ -113,7 +113,7 @@ select avg(records) from @records
 
 ```
 
-After you failover to the next possible node you will see that the database in In `Recovery` mode for a long time, to monitor the recovery process, use the below code:
+After you failover to the next possible node you will see that the database in `In Recovery` mode for a long time, to monitor the recovery process, use the below code:
 
 ```sql
 declare @table table (id int identity(1,1), logDate datetime, ProcessInfo varchar(200), Text varchar(max))
@@ -126,7 +126,8 @@ convert(varchar(10),dateadd(s,cast(substring(remaining_time,1, charindex(' ',rem
 substring(remaining_time,1,len(remaining_time)-1) remaining_time, 
 full_Text
 from (
-select replace(substring(Text,1,charindex(' ',Text)-1),'''','') database_name, ltrim(rtrim(substring(Text,charindex('approximately',Text)+14,len(Text)))) remaining_time, full_Text
+select replace(substring(Text,1,charindex(' ',Text)-1),'''','') database_name,
+ltrim(rtrim(substring(Text,charindex('approximately',Text)+14,len(Text)))) remaining_time, full_Text
 from (
 select ltrim(rtrim(substring(Text,1, charindex('.',Text)-1))) Text, full_Text
 from (
@@ -137,7 +138,8 @@ and id in (select max(id) from @table where text like 'Recovery%approximately%')
 inner join sys.databases db
 on c.database_name = db.name
 
-select session_id, percent_complete, command, status, start_time, convert(varchar(10),dateadd(datediff(s, start_time, getedate()),'2000-01-01'),108) duration
+select session_id, percent_complete, command, status, start_time,
+convert(varchar(10),dateadd(datediff(s, start_time, getedate()),'2000-01-01'),108) duration
 from sys.dm_exec_requests
 where command = 'db startup'
 
