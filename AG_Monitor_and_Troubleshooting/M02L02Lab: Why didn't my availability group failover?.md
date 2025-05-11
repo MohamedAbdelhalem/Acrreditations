@@ -16,7 +16,8 @@ else ''
 end hot_fix
 from (
 select id,
-d.login_name, deny_login, has_access, is_disabled, isnull([permission_name],'NA') currnet_permission, permissions all_permission, state_desc
+d.login_name, deny_login, has_access, is_disabled, isnull([permission_name],'NA') currnet_permission,
+permissions all_permission, state_desc
 from (values 
 ('NT AUTHORITY\SYSTEM','ALTER ANY AVAILABILITY GROUP'), --mandatory
 ('NT AUTHORITY\SYSTEM','CREATE AVAILABILITY GROUP'),    --best practice
