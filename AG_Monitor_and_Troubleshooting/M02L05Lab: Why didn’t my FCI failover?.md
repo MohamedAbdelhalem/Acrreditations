@@ -21,8 +21,28 @@ ForEach ($resource in $resources)
           }
       $loop++
 }
-
+no
 $table | Format-Table
+```
+To fix it and add the missing `Possible Owner Nodes`
+
+```powershell
+$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN13")
+$group = "SQL Server (INST1)"
+$type = "Physical Disk" #or "*"
+
+if ($type -eq "*") {
+    $result = $table | where {$_.OwnerGroup -eq $group} | select ResourceName
+    foreach ($fix in $result){
+         Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
+    }
+}else{
+    $result = $table | where {$_.OwnerGroup -eq $group -and $_.ResourceType -eq $type} | select ResourceName
+    foreach ($fix in $result){
+         Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
+    }
+}
+
 ```
 4. Ensure that SQL Server is installed on the passive node/s
 
