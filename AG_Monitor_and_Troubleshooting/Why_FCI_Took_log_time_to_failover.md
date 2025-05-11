@@ -92,15 +92,18 @@ LEAD(convert(varbinary(25),replace(vlf_first_lsn,':',''),2),1,1) over(order by v
 from sys.dm_db_log_info(db_id())
 where vlf_first_lsn != '00000000:00000000:0000'
 order by vlf_first_lsn
+
 open vlf_cursor
 fetch next from vlf_cursor into @f_lsn, @l_lsn
 while @@fetch_status = 0
 begin
+
 insert into @records
 select count(*)
 from sys.fn_dblog(
 dbo.fn_convert_lsn(@f_lsn),
 dbo.fn_convert_lsn(@l_lsn))
+
 fetch next from vlf_cursor into @f_lsn, @l_lsn
 end
 close vlf_cursor
