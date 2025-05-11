@@ -182,6 +182,23 @@ order by object_name
 
 ```
 
+To fix this issue, you have to reduce the number of `VLF`s, by 
+1- clear out or truncate the transaction log file, by taking log backups, this process could you initiate it more than 1 time.
+2- shrink the log file until you reach a smallest `VLF`, e.g. 2 MB.
+3- add space to the transaction log file and modify the file growth to a reseanble size e.g. 64MB, 128MB, 512MB, 1GB = (all these are = 16 VLFs)
+
+```sql
+Backup log [ProdDB] to disk = 'F:\SQLBackup\Backup\ProdDB_log.bak' WITH NOFORMAT, NOINIT,
+NAME = 'ProdDB-Log', SKIP, NOREWIND< NOUNLOUD, COMPRESSION, STATS = 1
+GO
+DBCC SHRINKFILE (ProdDB_log, 2)
+GO
+Alter database ProdDB modify file (name ='ProdDB_log', size = 4GB, filegrowth = 512MB)
+```
+
+Check the above query of the VLF analysis every time you do any step of the above fix steps.
+
+
 
 
 
