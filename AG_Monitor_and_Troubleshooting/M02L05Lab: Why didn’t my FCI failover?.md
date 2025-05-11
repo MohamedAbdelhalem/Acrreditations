@@ -21,7 +21,7 @@ ForEach ($resource in $resources)
           }
       $loop++
 }
-no
+
 $table | Format-Table
 ```
 To fix it and add the missing `Possible Owner Nodes`
