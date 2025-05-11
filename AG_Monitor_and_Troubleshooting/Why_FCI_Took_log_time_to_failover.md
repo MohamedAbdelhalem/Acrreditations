@@ -196,7 +196,8 @@ GO
 Alter database ProdDB modify file (name ='ProdDB_log', size = 4GB, filegrowth = 512MB)
 ```
 
-Check the above query of the VLF analysis every time you do any step of the above fix steps.
+Execute the `VLF analysis` script at each step of the fix steps above.
+
 
 
 
