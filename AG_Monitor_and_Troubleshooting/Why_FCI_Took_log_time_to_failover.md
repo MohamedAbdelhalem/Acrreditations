@@ -62,9 +62,7 @@ go
 In our case the file growth is `1MB` then VLF rule, 
 
 For `SQL Server 2014 and later versions`, the following rules apply:
-
 If the growth increment is less than 64MB, 
-
 SQL Server creates 4 VLFs, 
 
 each roughly 1/4 the size of the growth increment.
