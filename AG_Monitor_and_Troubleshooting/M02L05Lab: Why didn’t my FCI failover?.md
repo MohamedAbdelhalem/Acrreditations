@@ -22,6 +22,7 @@ ForEach ($resource in $resources)
       $loop++
 }
 
+$table | Format-Table
 ```
 4. Ensure that SQL Server is installed on the passive node/s
 
