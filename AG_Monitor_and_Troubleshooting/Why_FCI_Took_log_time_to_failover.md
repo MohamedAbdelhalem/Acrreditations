@@ -25,7 +25,7 @@ from #loginfo
 ```
 if your SQL Server version is equal of higher then just use this DMF `sys.dm_db_log_info`
 
-So, the `VLF analysis`, run the below query:
+So, for `VLF analysis`, run the below query:
 
 ```sql
 select db_name(mf.database_id) database_name, mf.name, mf.physical_name,
