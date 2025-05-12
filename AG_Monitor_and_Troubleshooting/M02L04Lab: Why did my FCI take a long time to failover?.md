@@ -146,7 +146,7 @@ select avg(records) from @records
 
 ```
 
-When you failover to the next available node, you'll notice that the database remains in the `In Recovery` state for an extended period. To monitor the recovery process effectively, use the following code:
+When you failover to the next available node, you'll notice that the database remains in the `In Recovery` state for an extended period. To monitor the recovery process effectively, use the following script:
 
 ```sql
 declare @table table (id int identity(1,1), logDate datetime, ProcessInfo varchar(200), Text varchar(max))
