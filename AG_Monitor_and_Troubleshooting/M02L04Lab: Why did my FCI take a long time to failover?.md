@@ -79,7 +79,7 @@ return @lsn_char
 end
 ```
 
-then execute this code to get the avrage records that fell the vlf
+Then execute this script to get the avrage records that fell the vlf
 
 by the way run this script to get the current file growth of the transaction log file
 
@@ -108,7 +108,7 @@ SQL Server will create 4 VLFs,
 
 each approximately 256KB in size.
 
-so, run this code to know how many records inside the Transaction log file in each 1MB:
+So, run this script to know how many records inside the Transaction log file in each 1MB:
 
 ```sql
 use proddb
