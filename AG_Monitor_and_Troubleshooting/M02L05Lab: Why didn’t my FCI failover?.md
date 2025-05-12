@@ -24,7 +24,7 @@ ForEach ($resource in $resources)
 
 $table | Format-Table
 ```
-To fix it and add the missing `Possible Owner Nodes`
+### To fix it and add the missing `Possible Owner Nodes`
 >[!Note]
 >*Run the above script again then execute the below*
 >
