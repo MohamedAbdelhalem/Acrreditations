@@ -25,7 +25,7 @@ ForEach ($resource in $resources)
 $table | Format-Table
 ```
 To fix it and add the missing `Possible Owner Nodes`
->NOTE!
+>[!Note]
 >fill these parameters $nodes to put all machine names you want to be a possible owners for the below group
 >$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")
 >place here the group name, e.g. SQL Server (INST1) "SQL Server FCI Name" or Cluster group
