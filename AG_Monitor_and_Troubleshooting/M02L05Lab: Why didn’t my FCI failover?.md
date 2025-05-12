@@ -26,15 +26,17 @@ $table | Format-Table
 ```
 To fix it and add the missing `Possible Owner Nodes`
 >[!Note]
+>*Run the above script again then execute the below*
+>
 >**$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")**
 >
-> Add in $nodes parameter all machine names you want to be a possible owners for the below `OwnerGroup`
+> Add in `$nodes` parameter all machine names you want to be a possible owners for the below `$OwnerGroup`
 >
->**$group = "SQL Server (INST1)"**
+>**$OwnerGroup = "SQL Server (INST1)"**
 >
 >place here the group name, e.g. SQL Server (INST1) "SQL Server FCI Name" or Cluster group
 >
->**$type = "Physical Disk" #or "*"**
+>**$ResourceType = "Physical Disk" #or "*"**
 >
 >here you have 2 options,
 >
@@ -45,16 +47,16 @@ To fix it and add the missing `Possible Owner Nodes`
 
 ```powershell
 $nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")
-$group = "SQL Server (INST1)"
-$type = "Physical Disk" #or "*"
+$OwnerGroup = "SQL Server (INST1)"
+$ResourceType = "Physical Disk" #or "*"
 
 if ($type -eq "*") {
-    $result = $table | where {$_.OwnerGroup -eq $group} | select ResourceName
+    $result = $table | where {$_.OwnerGroup -eq $OwnerGroup} | select ResourceName
     foreach ($fix in $result){
          Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
     }
 }else{
-    $result = $table | where {$_.OwnerGroup -eq $group -and $_.ResourceType -eq $type} | select ResourceName
+    $result = $table | where {$_.OwnerGroup -eq $OwnerGroup -and $_.ResourceType -eq $ResourceType} | select ResourceName
     foreach ($fix in $result){
          Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
     }
