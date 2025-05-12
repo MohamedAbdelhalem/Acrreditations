@@ -25,15 +25,19 @@ ForEach ($resource in $resources)
 $table | Format-Table
 ```
 To fix it and add the missing `Possible Owner Nodes`
+>NOTE!
+>fill these parameters $nodes to put all machine names you want to be a possible owners for the below group
+>$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")
+>place here the group name, e.g. SQL Server (INST1) "SQL Server FCI Name" or Cluster group
+>$group = "SQL Server (INST1)"
+>here you have 2 options,
+>1. to place the ResourceType, e.g. "Physical Disk" in case your FCI is installed in 2 nodes and the cluster disks are shared in all nodes (3 nodes)
+>2. put "*" in case of all resources in the above group you want to add these nodes ($nodes) as a possible owner nodes 
+>$type = "Physical Disk" #or "*"
 
 ```powershell
-#fill these parameters $nodes to put all machine names you want to be a possible owners for the below group
 $nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")
-#place here the group name, e.g. SQL Server (INST1) "SQL Server FCI Name" or Cluster group
 $group = "SQL Server (INST1)"
-#here you have 2 options,
-#1. to place the ResourceType, e.g. "Physical Disk" in case your FCI is installed in 2 nodes and the cluster disks are shared in all nodes (3 nodes)
-#2. put "*" in case of all resources in the above group you want to add these nodes ($nodes) as a possible owner nodes 
 $type = "Physical Disk" #or "*"
 
 if ($type -eq "*") {
