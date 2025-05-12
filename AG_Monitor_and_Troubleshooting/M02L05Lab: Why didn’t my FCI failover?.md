@@ -28,7 +28,7 @@ To fix it and add the missing `Possible Owner Nodes`
 >[!Note]
 >**$nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")**
 >
-> fill these parameters $nodes to put all machine names you want to be a possible owners for the below group
+> Add in $nodes parameter all machine names you want to be a possible owners for the below `OwnerGroup`
 >
 >**$group = "SQL Server (INST1)"**
 >
