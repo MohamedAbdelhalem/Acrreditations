@@ -23,5 +23,5 @@ GO
 
 If database in the other nodes still `Not Synchronizing`, then: 
 1. Try to `resume` database if it is `paused`.
-2. If it was not paused then `restart` the SQL Server on the secondary node/s.
+2. If it was `not paused` then `restart` the SQL Server on the secondary node/s.
 
