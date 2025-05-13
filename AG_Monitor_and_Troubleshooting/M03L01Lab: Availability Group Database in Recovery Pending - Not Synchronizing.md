@@ -1,4 +1,4 @@
-The Transaction Log disk was offline, turn it online again, then alter the effected database.
+The Transaction Log disk was `offline`. bring it online again and then alter the affected database.
 
 Go to the effected node, in our case `AlwaysOnN2`:
 
