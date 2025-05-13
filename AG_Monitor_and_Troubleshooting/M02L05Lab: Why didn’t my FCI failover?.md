@@ -1,7 +1,7 @@
 Check below 
 ## 1- Ensure that SQL Server clustered role is configured to failover if restarts are unsuccessful on current node:
 
-![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Features_and_Administration/RES/media/BlockClusterCommunication_01.png)
+![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/if_restart_is_unsuccessful_fail_over_all_resources_in_the_role.png)
 
 ## 2- Review the **Maximum failures in the specified period** setting for SQL Server clustered Role:
 
