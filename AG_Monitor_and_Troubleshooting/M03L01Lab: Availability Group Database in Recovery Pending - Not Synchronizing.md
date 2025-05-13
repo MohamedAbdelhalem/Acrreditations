@@ -12,7 +12,7 @@ ONLLINE
 EXIT
 ```
 
-Open `sqlcmd` or `SSMS` and then execute:
+Open `sqlcmd` or `SSMS` and then alter database online on the `Primary` node, in our case `AlwaysOnN2`:
 
 ```sql
 :CONNECT AlwaysOnN2
