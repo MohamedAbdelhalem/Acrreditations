@@ -1,7 +1,7 @@
 Check below 
-1. Ensure that SQL Server clustered role is configured to failover if restarts are unsuccessful on current node:
+## 1. Ensure that SQL Server clustered role is configured to failover if restarts are unsuccessful on current node:
 
-2. Review the **Maximum failures in the specified period** setting for SQL Server clustered Role:
+## 2. Review the **Maximum failures in the specified period** setting for SQL Server clustered Role:
 
 To configure the **Maximum Failures in the Failover Cluster Manager** for a SQL Server clustered role, you can follow these steps:
 
@@ -35,7 +35,7 @@ Setting the maximum failures to a high number like 10, especially when you have 
 
 If you have a 3-node cluster and set the maximum failures to 2 (N-1), the clustered role can failover to two other nodes before it is left in a failed state. This ensures that the service remains available while avoiding unnecessary failovers that could lead to instability.
 
-3. Ensure all the possible owners are checked for all clustered resources in the role
+## 3. Ensure all the possible owners are checked for all clustered resources in the role
 
 Run the below powershell script:
 
@@ -98,5 +98,5 @@ if ($type -eq "*") {
 }
 
 ```
-4. Ensure that SQL Server is installed on the passive node/s.
+## 4. Ensure that SQL Server is installed on the passive node/s.
 
