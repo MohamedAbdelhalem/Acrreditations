@@ -9,4 +9,4 @@ To fix it:
 
 2. Add in each node in the firewall inbound port **`5022`**
 
-![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/port_5022.png)
+![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Port_5022.png)
