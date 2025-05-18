@@ -7,7 +7,8 @@ select
 ag.name ag_name,
 r1.replica_server_name if_primary, ro.rounting_priority, r2.replica_server_name secondary_replica,
 r2.read_only_routing_url,
-substring(r2.read_only_routing_url, charindex(':', r2.read_only_routing_url, 10) + 1, 100) ReadOnlyRouting_Port
+substring(r2.read_only_routing_url, charindex(':', r2.read_only_routing_url, 10) + 1, 100) ReadOnlyRouting_Port,
+r2.secondary_role_allow_connections_desc
 from sys.availiability_read_only_routing_lists ro
 inner join sys.availiability_replicas r1
 on ro.replica_id = r1.replica_id
