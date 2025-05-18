@@ -21,23 +21,31 @@ on ag.group_id = r1.group_id
 Alter it with the correct configuration
 
 ```sql
-
+--if secondary_role_allow_connections_desc = OFF
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN1' WITH (SECONDARY_ROLE (ALLOW_CONNECTIONS = ALL));
 GO
+--change the wrong port put the replica SQL Server Engine port (if the port is incorrect)
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN1' WITH (SECONDARY_ROLE (READ_ONLY_ROUTING_URL = N'TCP://AlwaysOnN1:1433'));
 GO
+--if the replicas are missing or you need to add a new or remove a replica, else leave it.
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN1' WITH (PRIMARY_ROLE (READ_ONLY_ROUTING_LIST=('AlwaysOnN2','AlwaysOnN3')));
 GO
+--if secondary_role_allow_connections_desc = OFF
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN2' WITH (SECONDARY_ROLE (ALLOW_CONNECTIONS = ALL));
 GO
+--change the wrong port put the replica SQL Server Engine port (if the port is incorrect)
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN2' WITH (SECONDARY_ROLE (READ_ONLY_ROUTING_URL = N'TCP://AlwaysOnN2:1433'));
 GO
+--if the replicas are missing or you need to add a new or remove a replica, else leave it.
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN2' WITH (PRIMARY_ROLE (READ_ONLY_ROUTING_LIST=('AlwaysOnN1','AlwaysOnN3')));
 GO
+--if secondary_role_allow_connections_desc = OFF
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN3' WITH (SECONDARY_ROLE (ALLOW_CONNECTIONS = ALL));
 GO
+--change the wrong port put the replica SQL Server Engine port (if the port is incorrect)
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN3' WITH (SECONDARY_ROLE (READ_ONLY_ROUTING_URL = N'TCP://AlwaysOnN2:1433'));
 GO
+--if the replicas are missing or you need to add a new or remove a replica, else leave it.
 ALTER AVAILABILITY GROUP [AGCorp] MODIFY REPLICA ON N'AlwaysOnN3' WITH (PRIMARY_ROLE (READ_ONLY_ROUTING_LIST=('AlwaysOnN1','AlwaysOnN2')));
 GO
 ```
