@@ -10,7 +10,7 @@ The issue is a leak of permission on the CNO to create computer object.
    
    ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Add_or_edit_CNO.png)
 
-4. `Select a principal` and check these permissions.
+4. `Select a principal` and add the CNO `AlwaysOnCluster$` from `Computers`, the add these permissions.
 
    ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/CNO_Computer_object.png)
 
