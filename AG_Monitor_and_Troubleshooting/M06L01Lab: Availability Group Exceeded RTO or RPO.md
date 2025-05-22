@@ -18,7 +18,7 @@ on dbrs.replica_id = r.replica_id
 where is_local = 1
 ```
 
-You can also monitor background sessions using the script provided below.
+You can monitor background sessions for any `head blockers`, `blocking`, or `locking` using the script provided below.
 
 ```sql
 
