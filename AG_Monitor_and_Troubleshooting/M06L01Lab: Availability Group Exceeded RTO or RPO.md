@@ -89,4 +89,5 @@ order by bs.level, flag
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/root_headblocker.png)
 
+**To fix it:**
 `Kill` the `root head blocker` session id `94`
