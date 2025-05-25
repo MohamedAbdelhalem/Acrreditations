@@ -59,6 +59,7 @@ exec sp_executesql @dynamic_sql
 
 select p.spid, isnull(bs.level,100000) level, p.loginame, db_name(p.dbid) database_name, 
 case 
+when blocked < 0 then 0
 when blocked > 0 then 1
 when p.status = 'suspended'  and blocked = 0 then 2
 when p.status = 'runnable'   and blocked = 0 then 3
