@@ -74,7 +74,8 @@ convert(varchar(10), dateadd(s, datediff(s, r.start_time, getdate()), '2000-01-0
 waittime, blocked, bs.blocking_session_id, hostname, c.client_net_address, program_name
 from sys.sysprocesses p left outer join @blocking_sessions bs
 on p.spid = bs.spid
-left outer join (select pp.spid, ss.text, substring(ss.text, (stmt_start/2)+1, case when stmt_end < 0 then len(ss.text) else ((stmt_end - stmt_start)/2)+1 end) current_sql
+left outer join (select pp.spid, ss.text, substring(ss.text, (stmt_start/2)+1, case when stmt_end < 0 then len(ss.text)
+                  else ((stmt_end - stmt_start)/2)+1 end) current_sql
                  from sys.sysprocesses pp cross apply sys.dm_exec_sql_text(pp.sql_handle)ss
                 )s
 on p.spid = s.spid
