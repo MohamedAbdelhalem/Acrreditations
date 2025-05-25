@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/new_perfmon_2.png)
 
-![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/new_perfmon_5.png)
+![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/new_perfmon_3.png)
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/new_perfmon_4.png)
 
