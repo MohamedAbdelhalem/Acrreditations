@@ -12,8 +12,8 @@
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/slow_script.png)
 
-![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/slow_perfom.png)
+![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/slow_perfmon.png)
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/fast_script.png)
 
-![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/fast_perfom.png)
+![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/fast_perfmon.png)
