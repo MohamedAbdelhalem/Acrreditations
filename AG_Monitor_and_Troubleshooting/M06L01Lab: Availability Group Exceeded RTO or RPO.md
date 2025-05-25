@@ -20,6 +20,8 @@ where is_local = 1
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/root_headblocker.png)
 
+`Kill` the `root head blocker` session id `94`
+
 You can monitor background sessions for any `head blockers`, `blocking`, or `locking` using the script provided below.
 
 ```sql
