@@ -66,7 +66,7 @@ when p.status = 'runnable'   and blocked = 0 then 3
 when p.status = 'running'    and blocked = 0 then 4
 when p.status = 'sleeping'   and blocked = 0 then 5
 when p.status = 'background' and blocked = 0 then 6
-else 5
+else 100
 end flag,
 p.status,lastwaittype, p.cmd, s.text, s.current_sql, 
 convert(varchar(10), dateadd(s, datediff(s, r.start_time, getdate()), '2000-01-01'), 108) duration,
