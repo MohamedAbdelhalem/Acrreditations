@@ -58,11 +58,13 @@ insert into @blocking_sessions
 exec sp_executesql @dynamic_sql
 
 select p.spid, isnull(bs.level,100000) level, p.loginame, db_name(p.dbid) database_name, 
-case p.status 
-when 'suspended' then 1
-when 'runnable'  then 2
-when 'running'   then 3
-when 'sleeping'  then 4
+case 
+when blocked > 0 then 1
+when p.status = 'suspended'  and blocked = 0 then 2
+when p.status = 'runnable'   and blocked = 0 then 3
+when p.status = 'running'    and blocked = 0 then 4
+when p.status = 'sleeping'   and blocked = 0 then 5
+when p.status = 'background' and blocked = 0 then 6
 else 5
 end flag,
 p.status,lastwaittype, p.cmd, s.text, s.current_sql, 
