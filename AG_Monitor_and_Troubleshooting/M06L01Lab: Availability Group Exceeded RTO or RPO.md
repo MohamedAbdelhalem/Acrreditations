@@ -38,7 +38,8 @@ as
 (
 select spid, blocking_session_id, 0 level
 from (
-select spid, case when spid in (select blocked from sys.sysprocesses) and blocked = 0 then NULL else blocked end blocking_session_id
+select spid, case when spid in (select blocked from sys.sysprocesses) and blocked = 0 then NULL
+else blocked end blocking_session_id
 from sys.sysprocesses)a
 where blocking_session_id is null
 union all
