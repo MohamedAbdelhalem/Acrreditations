@@ -23,6 +23,7 @@ PS C:\Users\mssql> Enter-PSSession -ComputerName sqlservervm03
 
 
 [sqlservervm03]: PS C:\Users\mssql\Documents> exit
+
 PS C:\Users\mssql> sqlcmd -S . -E
 1> alter endpoint hadr_endpoint state=stopped
 2> go
@@ -40,8 +41,10 @@ PS C:\Users\mssql> tasklist /v /fi "pid eq 5840"
 Image Name                     PID Session Name        Session#    Mem Usage Status          User Name                                              CPU Time Window Title         
 ========================= ======== ================ =========== ============ =============== ================================================== ============ ========================================================================
 wsmprovhost.exe               5840 Services                   0     74,076 K Unknown         TLMS\mssql                                              0:00:09 N/A                  
+
 PS C:\Users\mssql> taskkill /pid 5840 /F
 SUCCESS: The process with PID 5840 has been terminated.
+
 PS C:\Users\mssql> netstat -ano | findstr "5022"
 PS C:\Users\mssql> sqlcmd -S . -E
 1> alter endpoint hadr_endpoint state=stopped
