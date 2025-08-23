@@ -160,11 +160,24 @@ Occurs while waiting for a log flush to complete. Common operations that cause l
 - **Why it matters**: High values suggest CPU pressure or inefficient query plans.
 - **Typical causes**: Overloaded secondary node or skewed parallelism.
 
----
-
 ### 🧪 **Real-World Observations from Internal Diagnostics**
 From recent internal AzureMonitor diagnostics:
 - Secondary nodes often show **low CPU usage** but **high wait times** on I/O-related waits like `PAGEIOLATCH_SH`, `WRITELOG`, and `SOS_SCHEDULER_YIELD`.
 - **SeedingGroup workloads** on secondaries may show **zero user cores**, indicating idle or blocked replication.
 - **RedoGroup workloads** are common on secondaries and can be bottlenecked by disk or memory pressure.
 
+---
+
+You're asking about the **log block size sent from the primary to the secondary replica in SQL Server Always On Availability Groups**, and how it relates to the **HADR_SYNC_COMMIT wait type**. Here's a detailed breakdown based on internal documentation and expert sources[1](https://microsoft.sharepoint.com/teams/CSUDataAICommunityIPLibrary/_layouts/15/Doc.aspx?sourcedoc=%7B9B84F3F0-87DE-4A2C-A128-C553A9A10B2F%7D&file=SQL%20Server%20AlwaysOn%20AG%20Troubleshooting_1_ICE.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1)[2](https://microsoft.sharepoint.com/teams/CSUDataAICommunityIPLibrary/Shared%20Documents/Azure-SQL/Data-Bytes-Lunch-And-Learn/IP%20Collateral/Always%20On/Always%20On%20Troubleshooting/Always%20on%20troubleshooting.pptx?web=1)[3](https://microsoft.sharepoint.com/teams/CSUDataAICommunityIPLibrary/_layouts/15/Doc.aspx?sourcedoc=%7B58471864-80AA-462D-AB1F-AB6D38EC3C03%7D&file=SQL%20Server%202025%20Features.pptx&action=edit&mobileredirect=true&DefaultItemOpen=1)[4](https://dev.azure.com/Supportability/38958754-cfa3-4fdc-be56-01accd7da6c1/_wiki/wikis/21e4795a-c9ce-4b76-bcff-89b1cdfa6cd8?pagePath=%2FSQL%20Server%20On%20Premise%2FTroubleshooting%20Guides%2FHigh%20Availability%20Workflow%2FRoot%20Cause%20Analysis%2FHADR_SYNC_COMMIT%20XE%20Quick%20Analysis)[5](https://techcommunity.microsoft.com/blog/sqlserver/troubleshooting-high-hadr-sync-commit-wait-type-with-always-on-availability-grou/385369):
+
+---
+
+### 🔍 **What Is Sent and When?**
+
+In synchronous commit mode, SQL Server sends **log blocks** from the primary to the secondary replica. These blocks contain transaction log records that must be **hardened (written to disk)** on the secondary before the primary can consider the transaction committed.
+
+- **Default Log Block Size**: SQL Server does not use a fixed size for each log block. Instead, it uses **group commit** logic to batch multiple transactions into a single log block.
+- **Group Commit Delay**: By default, SQL Server waits **10 milliseconds** to accumulate multiple commits into a single log block before sending it to the secondary.
+- **Customization**: This delay can be adjusted using the **Availability Group Commit Time** configuration option. Setting it lower can reduce latency but may increase overhead.
+
+---
