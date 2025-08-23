@@ -197,7 +197,7 @@ In synchronous commit mode, SQL Server sends **log blocks** from the primary to 
 
 ---
 
-**Can I adjust the group commit wait time** in SQL Server Always On Availability Groups?, 
+### Can I adjust the Group Commit Wait Time in SQL Server Always On Availability Groups?
 
 <mark><b>Yes, but only indirectly.</b></mark>
 
