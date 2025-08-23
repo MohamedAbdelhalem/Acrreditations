@@ -1,6 +1,6 @@
 ## Wait statistics
 
-### HADR_SYNC_COMMIT (remote `WRITELOG` wait) 
+### HADR_SYNC_COMMIT (remote `WRITELOG` - `1st`) 
 
 This wait type is part of SQL Server's **Always On Availability Groups** infrastructure. It measures the time a transaction on the **primary replica** waits until **all synchronous secondary replicas** have acknowledged that the transaction's **commit log sequence number (LSN)** has been hardened (written to disk).
 
@@ -117,7 +117,7 @@ Waiting for transaction commit processing to allow a synchronizing secondary dat
 
 ---
 
-### WRITELOG (Local I/O)
+### WRITELOG (Local - `2nd`)
 
 Occurs while waiting for a log flush to complete. Common operations that cause log flushes are checkpoints and transaction commits.
 
