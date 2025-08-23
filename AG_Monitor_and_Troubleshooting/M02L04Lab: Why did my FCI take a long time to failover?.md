@@ -1,10 +1,10 @@
-### Because of there are more than 20,000 VLF in the database ProdDB.
+### The database ProdDB contains `over 20,000 VLF`.
 
-lets break down what is going on.
+let's break down the current situation.
 
-you can see what is the number of `VLF`s from the below queries:
+You can determine the number of `VLF`s using the queries below:
 
-if your version is older than **SQL Server 2016 Service Pack 2 (SP2)** use this query:
+If your version is older than **SQL Server 2016 Service Pack 2 (SP2)**, use this query:
 
 ```sql
 use ProdDB
@@ -23,9 +23,10 @@ case when status > 0 then 1 else 0 end vlf_active,
 status vlf_status, parity vlf_parity
 from #loginfo
 ```
-if your SQL Server version is equal of higher then just use this DMF `sys.dm_db_log_info`
 
-So, for `VLF analysis`, run the below query:
+If your SQL Server version is equal to or higher, simply use the DMF `sys.dm_db_log_info`
+
+So, To perform the `VLF analysis`, run the below query:
 
 ```sql
 declare @db_log_info table (database_id int, file_id int, space_used bigint)
@@ -55,10 +56,7 @@ and mf.database_id = info.database_id
 and mf.type = 1
 ```
 
-
-
-
-create this function to convert `LSN`
+Create this function to convert `LSN`
 
 ```sql
 Create or Alter Function dbo.fn_convert_lsn (
@@ -79,9 +77,9 @@ return @lsn_char
 end
 ```
 
-Then execute this script to get the avrage records that fell the vlf
+Execute this script to retrieve the average records that filled the VLF.
 
-by the way run this script to get the current file growth of the transaction log file
+By the way, run this script to check the current file growth of the transaction log file.
 
 ```sql
 USE ProdDB
@@ -92,6 +90,7 @@ select name, physical_name, type_desc,
 from sys.database_files
 go
 ```
+
 In our case the file growth is `1MB` then VLF rule, 
 
 For `SQL Server 2014 and later versions`, the following rules apply:
@@ -108,7 +107,7 @@ SQL Server will create 4 VLFs,
 
 each approximately 256KB in size.
 
-So, run this script to know how many records inside the Transaction log file in each 1MB:
+To determine the number of records within the Transaction log file for each `1MB`, please run the following script:
 
 ```sql
 use proddb
@@ -184,9 +183,9 @@ order by object_name
 
 To fix this issue, you have to reduce the number of `VLF`s, by:
 
-1. clear out or truncate the transaction log file, by taking log backups, this process could you initiate it more than 1 time.
-2. shrink the log file until you reach a smallest `VLF`, e.g. 2 MB.
-3. add space to the transaction log file and modify the file growth to a reseanble size e.g. 64MB, 128MB, 512MB, 1GB = (all these are = 16 VLFs)
+1. Clear out or truncate the transaction log file, by taking log backups, You can initiate this process multiple times if needed.
+2. Shrink the log file until you reach a smallest `VLF`, e.g. 2 MB.
+3. Add space to the transaction log file and modify the file growth to a reseanble size e.g. 64MB, 128MB, 512MB, 1GB = (all of these are = 16 VLFs)
 
 ```sql
 Backup log [ProdDB] to disk = 'F:\SQLBackup\Backup\ProdDB_log.bak' WITH NOFORMAT, NOINIT,
@@ -197,7 +196,7 @@ GO
 Alter database ProdDB modify file (name ='ProdDB_log', size = 4GB, filegrowth = 512MB)
 ```
 
-Execute the `VLF analysis` script at each step of the fix steps above.
+Execute the `VLF analysis` script at each step of the fix the above steps.
 
 
 
