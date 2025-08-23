@@ -194,3 +194,20 @@ In synchronous commit mode, SQL Server sends **log blocks** from the primary to 
   
 - **Monitor TempDB Usage**  
   If using `SORT_IN_TEMPDB`, ensure TempDB has sufficient space. Rebuilds can consume significant TempDB resources.
+
+---
+
+**Can I adjust the group commit wait time** in SQL Server Always On Availability Groups?, 
+
+<mark><b>Yes, but only indirectly.</b></mark>
+
+### 🔧 Default Behavior
+By default, SQL Server waits **up to 10 milliseconds** to group multiple transaction commits into a single log block before sending it to synchronous secondary replicas. This batching helps optimize performance and reduce overhead.
+
+### ⚙️ How to Adjust It
+You can modify this behavior using the **Availability Group commit time setting**:
+
+- **Trace Flag 3463**: Enables advanced diagnostics for group commit behavior.
+- **Availability Group Commit Time (AGCT)**: This internal setting can be adjusted via undocumented methods or trace flags, but **Microsoft does not officially support changing it directly** in most environments.
+
+---
