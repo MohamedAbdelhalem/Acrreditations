@@ -1,4 +1,5 @@
- System user `NT AUTHORITY\SYSTEM` has `Deny` permission on `ALTER ANY AVAILABILITY GROUP`
+1st reason: NIC card on node 2 was disabled
+2nd reason: System user `NT AUTHORITY\SYSTEM` has `Deny` permission on `ALTER ANY AVAILABILITY GROUP`
 
 To find out the missing permissions, run the below query:
 
@@ -38,4 +39,12 @@ on sp.sid = sl.sid
 where sp.name = 'NT AUTHORITY\SYSTEM')l
 on sp.grantee_principal_id = l.principal_id)t
 on d.[permissions] = t.permission_name) fr
+```
+
+After Enable the NIC and Grant permissions, start the AG
+
+```PowerShell
+
+Start-ClusterResource -name "AOCorp"
+
 ```
