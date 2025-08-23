@@ -42,7 +42,7 @@ on sp.grantee_principal_id = l.principal_id)t
 on d.[permissions] = t.permission_name) fr
 ```
 
-After Enable the NIC and Grant permissions, start the AG
+Once the NIC is enabled and permissions are granted, proceed to start the AG:
 
 ```PowerShell
 
