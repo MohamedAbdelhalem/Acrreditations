@@ -207,7 +207,7 @@ By default, SQL Server waits **up to 10 milliseconds** to group multiple transac
 ### ⚙️ How to Adjust It
 You can modify this behavior using the **Availability Group commit time setting**:
 
-- **Trace Flag 3463**: Enables advanced diagnostics for group commit behavior.
+- **Trace Flag `3463`**: Enables advanced diagnostics for group commit behavior.
 - **Availability Group Commit Time (AGCT)**: This internal setting can be adjusted via undocumented methods or trace flags, but **Microsoft does not officially support changing it directly** in most environments.
 
 ---
