@@ -199,7 +199,7 @@ In synchronous commit mode, SQL Server sends **log blocks** from the primary to 
 
 ### Can I adjust the Group Commit Wait Time in SQL Server Always On Availability Groups?
 
-<mark><b>Yes</b>, but only indirectly.</mark>
+<mark>`Yes`, but only indirectly.</mark>
 
 ### 🔧 Default Behavior
 By default, SQL Server waits **up to 10 milliseconds** to group multiple transaction commits into a single log block before sending it to synchronous secondary replicas. This batching helps optimize performance and reduce overhead.
