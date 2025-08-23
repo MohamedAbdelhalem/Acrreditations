@@ -46,6 +46,6 @@ Once the NIC is enabled and permissions are granted, proceed to start the AG:
 
 ```PowerShell
 
-Start-ClusterResource -name "AOCorp"
+Start-ClusterResource -Name "AOCorp"
 
 ```
