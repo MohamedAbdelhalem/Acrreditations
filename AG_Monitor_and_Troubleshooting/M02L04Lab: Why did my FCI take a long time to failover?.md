@@ -181,7 +181,7 @@ order by object_name
 
 ```
 
-To fix this issue, you have to reduce the number of `VLF`s, by:
+### To fix this issue, you have to reduce the number of `VLF`s, by:
 
 1. Clear out or truncate the transaction log file, by taking log backups, You can initiate this process multiple times if needed.
 2. Shrink the log file until you reach a smallest `VLF`, e.g. 2 MB.
