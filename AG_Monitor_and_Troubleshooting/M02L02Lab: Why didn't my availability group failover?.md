@@ -1,6 +1,6 @@
-1st reason: NIC card on node 2 was disabled.
+`1st` reason: NIC card on node 2 was disabled.
 
-2nd reason: System user `NT AUTHORITY\SYSTEM` has `Deny` permission on `ALTER ANY AVAILABILITY GROUP`
+`2nd` reason: System user `NT AUTHORITY\SYSTEM` has `Deny` permission on `ALTER ANY AVAILABILITY GROUP`
 
 To find out the missing permissions, run the below query:
 
