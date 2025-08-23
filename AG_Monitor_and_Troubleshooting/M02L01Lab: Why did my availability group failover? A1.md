@@ -81,7 +81,8 @@ then after producing the issue one of the nodes will be the primary role, and no
 so, do the same fix steps as it shows above and then add the below step to start the node with `Clear Quarantine`
 
 ```powershell
-Get-ClusterNode -Name "AlwaysOn2" | select state, statusInformation
+Get-ClusterNode | Select NodeName, State, StatusInformation
+
 Start-ClusterNode -Name "AlwaysOn2" -ClearQuarantine
 ```
 then restart the sql server
