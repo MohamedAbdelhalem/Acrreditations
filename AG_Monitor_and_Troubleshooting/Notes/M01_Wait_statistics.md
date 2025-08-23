@@ -14,7 +14,7 @@ A high value means the primary replica is **waiting longer than usual** for seco
 - **Slow log hardening** on one or more secondary replicas.
 - **Network latency** between primary and secondary nodes.
 - **Disk I/O bottlenecks** on secondary replicas.
-- **Small transactions** causing inefficient log block usage (group commit issues.
+- **Small transactions** causing inefficient log block usage (group commit issues).
 - **Auto-commit mode** inefficiencies—each transaction requires a round trip and log hardening on all replicas.
 - 
 ### 🧭 Where Does It Appear? Primary or Secondary Node?
