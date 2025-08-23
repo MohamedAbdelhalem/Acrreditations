@@ -86,14 +86,14 @@ $OwnerGroup = "SQL Server (INST1)"
 $ResourceType = "Physical Disk" #or "*"
 
 if ($ResourceType -eq "*") {
-    $result = $table | where {$_.OwnerGroup -eq $OwnerGroup} | select ResourceName
+    $result = $table | where {$_.OwnerGroup -eq $OwnerGroup} | Select ResourceName
     foreach ($fix in $result){
-         Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
+         Set-ClusterOwnerNode -Resource $fix.ResourceName -Owners $nodes
     }
 }else{
-    $result = $table | where {$_.OwnerGroup -eq $OwnerGroup -and $_.ResourceType -eq $ResourceType} | select ResourceName
+    $result = $table | where {$_.OwnerGroup -eq $OwnerGroup -and $_.ResourceType -eq $ResourceType} | Select ResourceName
     foreach ($fix in $result){
-         Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
+         Set-ClusterOwnerNode -Resource $fix.ResourceName -Owners $nodes
     }
 }
 
