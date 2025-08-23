@@ -115,7 +115,7 @@ If you see **high or sustained values** for `HADR_LOGCAPTURE_WAIT`, it might ind
 
 Waiting for transaction commit processing to allow a synchronizing secondary database to catch up to the primary end of log in order to transition to the synchronized state. This is an expected wait when a secondary database is catching up. 
 
-### WRITELOG 
+### WRITELOG (Local I/O)
 
 Occurs while waiting for a log flush to complete. Common operations that cause log flushes are checkpoints and transaction commits.
 
