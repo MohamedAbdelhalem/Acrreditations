@@ -87,7 +87,7 @@ $nodes = @("ALWAYSONN1","ALWAYSONN2","ALWAYSONN3")
 $OwnerGroup = "SQL Server (INST1)"
 $ResourceType = "Physical Disk" #or "*"
 
-if ($type -eq "*") {
+if ($ResourceType -eq "*") {
     $result = $table | where {$_.OwnerGroup -eq $OwnerGroup} | select ResourceName
     foreach ($fix in $result){
          Set-ClusterOwnerNode -Resource $fix.ResourceName -Owner $nodes
