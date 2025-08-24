@@ -24,11 +24,11 @@ Here are the steps to create the Performance Monitor (Perfmon):
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/slow_script.png)
 
-5. After the query has finished running, stop the performance counter and review the report:
+5. Once the query finishes running, stop the performance counter and review the report:
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/slow_perfmon.png)
 
-To address the identified issue, make the following changes: commit after every 1,000 inserts to reduce the transaction log writer bottleneck. The report indicates that the write speed is only 516 bytes per second, which is quite low. To improve the average size, batch your transactions into multiple patches and change them into explicit transactions instead of using the default auto-commit behavior.
+To address the identified issue, make the following changes: commit after every `1,000 inserts` to reduce the transaction log writer bottleneck. The report indicates that the write speed is only `516 bytes` per second, which is `quite low`. To improve the average size, batch your transactions into multiple patches and change them into `explicit transactions` instead of using the `default auto-commit` behavior.
 
 ![alt text](https://github.com/MohamedAbdelhalem/dbatools/blob/main/Monitor/Perfmon/media/fast_script.png)
 
