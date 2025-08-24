@@ -6,7 +6,7 @@
    ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/CNO_OU.png)
    
     
-3. `Add` or 'Edit' if the Cluster Name Object `CNO` exists:
+3. `Add` or `Edit` if the Cluster Name Object `CNO` exists:
    
    ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Add_or_edit_CNO.png)
 
