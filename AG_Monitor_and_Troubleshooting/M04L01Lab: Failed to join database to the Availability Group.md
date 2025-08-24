@@ -1,4 +1,5 @@
-The problem  contans 3 issues:
+The problem presents 3 main issues:
+
 1. Node 3 doesn't have domain service account `Local System` not `corpnet\SQLSvc`
 
 Change it, and you may have an issue after changing the service account with this error **`"Cannot generate SSPI context"`**
