@@ -1,4 +1,4 @@
-### The issue is a leak of permission on the CNO of having Create Computer Object permission on the AD.
+### The issue is a leak of permission on the CNO of having Create Computer Object permission on the AD's OU.
 
 1. Go to the `AlwaysOnDC` machine and open `Active Directory Users and Computers`, and then search on the `OU` that contains the windows cluster `AlwaysOnCluster`.
 2. Right click on the OU `AlwaysOnOU` and go to the `security` tab, then click Advanced.
