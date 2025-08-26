@@ -6,7 +6,7 @@ The problem presents 3 steps:
 
   To fix it:
   
-2. Set `SPN`
+2- Set `SPN`
 
 ```powershell
 #query SPN
@@ -24,7 +24,7 @@ SETSPN -A MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com:1433 corpnet\SQLSvc
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Trust_Encrypt.png)
 
-3. Add in each node in the firewall inbound port **`5022`**
+3- Add in each node in the firewall inbound port **`5022`**
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Port_5022.png)
 
