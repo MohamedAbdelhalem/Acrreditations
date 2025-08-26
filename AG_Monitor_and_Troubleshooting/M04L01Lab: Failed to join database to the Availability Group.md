@@ -9,11 +9,14 @@ The problem presents 3 steps:
 2. Set `SPN`
 
 ```powershell
-
+#query SPN
 SETSPN -L AlwaysOnN3
+
+#delete duplicate
 SETSPN -D MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com AlwaysOnN3
 SETSPN -D MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com:1433 AlwaysOnN3
 
+#add SPN
 SETSPN -A MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com corpnet\SQLSvc
 SETSPN -A MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com:1433 corpnet\SQLSvc
 ```
