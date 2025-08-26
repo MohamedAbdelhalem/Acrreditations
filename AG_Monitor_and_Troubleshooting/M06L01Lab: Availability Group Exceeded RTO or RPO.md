@@ -1,5 +1,5 @@
 
-To effectively monitor both `RTO` and `RPO`, please use the script provided below.
+To effectively monitor both `RTO` and `RPO`, use the script below.
 
 ```sql
 select db.name database_name, ag.name ag_name, r.replica_server_name, dbrs.is_local,
