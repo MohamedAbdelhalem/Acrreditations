@@ -15,3 +15,21 @@
    ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/CNO_Computer_object.png)
 
 5. Then try to `create the Listener` again.
+
+```sql
+Use master
+go
+Alter Availability group [AOCorp]
+ADD Listener 'AOCorpListener' (
+With IP
+(('10.10.1.106','255.255.255.0')
+)
+, PORT = 1433)
+go
+```
+
+![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/After_Listener_Creation.png)
+
+
+
+
