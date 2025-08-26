@@ -1,14 +1,14 @@
 The problem presents 3 steps:
 
-1- Node 3 doesn't have domain service account `corpnet\SQLSvc` but `Local System` 
+### 1- Node 3 doesn't have domain service account `corpnet\SQLSvc` but `Local System` 
 
   Change it, however, you may have an issue after changing the service account with this error **`"Cannot generate SSPI context"`**
 
   To fix it:
   
-2- Go to `AlwaysOnDC` node to Set `SPN`
+### 2- Go to `AlwaysOnDC` node to Set `SPN`
 
-### There are 2 approaches to fix it
+#### There are 2 approaches to fix it
 
 a. Delete the exist SPN 
 
@@ -35,7 +35,7 @@ SETSPN -A MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com:1433 corpnet\SQLSvc
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Trust_Encrypt.png)
 
-3- Add in each node in the firewall inbound port **`5022`**
+### 3- Add in each node in the firewall inbound port **`5022`**
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/Port_5022.png)
 
