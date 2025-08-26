@@ -6,7 +6,7 @@ The problem presents 3 steps:
 
   To fix it:
   
-2- Set `SPN`
+2- Go to `AlwaysOnDC` node to Set `SPN`
 
 ```powershell
 #query SPN
