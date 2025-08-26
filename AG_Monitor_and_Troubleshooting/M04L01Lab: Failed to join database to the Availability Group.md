@@ -7,7 +7,8 @@ The problem presents 3 steps:
   To fix it:
   
 2- Go to `AlwaysOnDC` node to Set `SPN`
-there are 2 approaches to fix it
+
+### There are 2 approaches to fix it
 
 a. Delete the exist SPN 
 
