@@ -7,6 +7,16 @@ The problem presents 3 steps:
   To fix it:
   
 2- Go to `AlwaysOnDC` node to Set `SPN`
+there are 2 approaches to fix it
+
+a. Delete the exist SPN 
+
+```powershell
+SETSPN -D MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com AlwaysOnN3
+SETSPN -D MSSQLSvc/AlwaysOnN3.corpnet.Contoso.com:1433 AlwaysOnN3
+```
+
+b. Add SPN
 
 ```powershell
 #query SPN
