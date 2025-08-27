@@ -3,7 +3,7 @@ To effectively monitor both `RTO` and `RPO`, use the script below.
 
 ```sql
 select db.name database_name, ag.name ag_name, r.replica_server_name, dbrs.is_local,
-case dbrs.is_primary when 1 then 'Primary' else 'Secondary' end Role, dbrs.database_state_desc,
+case dbrs.is_primary_replica when 1 then 'Primary' else 'Secondary' end Role, dbrs.database_state_desc,
 cast(dbrs.log_send_queue_size/1024.0 as decimal(10,2)) [log send queue MB (RPO)],
 convert(varchar(10),dateadd(s,dbrs.log_send_queue_size/dbrs.log_send_rate,'2000-01-01'),108) RPO,
 cast(dbrs.redo_queue_size/1024.0 as decimal(10,2)) [redo queue MB (RTO)],
@@ -81,7 +81,7 @@ left outer join (select pp.spid, ss.text, substring(ss.text, (stmt_start/2)+1, c
 on p.spid = s.spid
 left outer join sys.dm_exec_requests r
 on p.spid = r.session_id
-inner join sys.dm_exec_connections c
+left outer join sys.dm_exec_connections c
 on p.spid = c.session_id
 order by bs.level, flag
 
