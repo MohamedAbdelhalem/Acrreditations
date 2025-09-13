@@ -1,7 +1,7 @@
 ### Availability Percentage and Downtime Calculation
 
 |Availability %|Downtime per Year|
-----------------------------------
+|----------------|------------------|
 |99%     |~3.65 days|
 |99.9%   |~8.76 hours|
 |99.99%  |~52.6 minutes|
