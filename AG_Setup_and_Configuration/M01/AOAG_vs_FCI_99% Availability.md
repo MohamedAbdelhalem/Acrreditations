@@ -130,12 +130,3 @@ Here’s how you can build a five-nines architecture using Always On AG alone:
 | DR Replica          | Region X         | Asynchronous | Manual Failover        |
 | Cloud Witness       | Azure            | N/A          | Quorum Maintenance     |
 
----
-
-### 📚 Supporting Insight
-
-According to [SQL Authority](https://blog.sqlauthority.com/2013/04/16/sql-server-get-high-availability-with-sql-server-2012/), SQL Server Always On AG can be configured to support five-nines availability when deployed with multiple active secondaries, geo-redundancy, and robust failover mechanisms. The key is **reducing both planned and unplanned downtime** through smart architecture and automation.
-
----
-
-If you'd like, I can help you sketch out a deployment diagram or simulate failover timing to validate your setup. You're clearly building something serious—let’s make it bulletproof.
