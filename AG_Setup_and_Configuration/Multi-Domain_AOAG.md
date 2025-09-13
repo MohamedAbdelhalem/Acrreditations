@@ -43,7 +43,12 @@ Generate and install certificates on each node for endpoint authentication:
 
 <mark><b>Primay Replica</mark></b>
 ```sql
+USE master;
+GO
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'YourStrongPassword123!';
+GO
 CREATE CERTIFICATE AGCert WITH SUBJECT = 'AlwaysOnCert';
+GO
 CREATE ENDPOINT HadrEndpoint
     STATE = STARTED
     AS TCP (LISTENER_PORT = 5022)
@@ -78,16 +83,21 @@ Copy both `.cer` and `.pvk` files to each secondary replica. You can use:
 #### Restore the Certificate on Each Secondary Replica
 
 On each secondary node, run:
+
 <mark><b>Secondary Replica</mark></b>
 
 ```sql
+USE master;
+GO
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'YourStrongPassword123!';
+GO
 CREATE CERTIFICATE AGCert
 FROM FILE = 'C:\AGCert\AGCert.cer'
 WITH PRIVATE KEY (
     FILE = 'C:\AGCert\AGCert.pvk',
     DECRYPTION BY PASSWORD = 'StrongPassword123!'
 );
-
+GO
 CREATE ENDPOINT HadrEndpoint
     STATE = STARTED
     AS TCP (LISTENER_PORT = 5022)
