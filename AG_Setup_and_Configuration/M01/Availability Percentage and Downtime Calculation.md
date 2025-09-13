@@ -7,7 +7,7 @@
 |99.99%  |~52.6 minutes|
 |99.999% |~5.26 minutes|
 
-To calculate downtime per year:
+<mark><b>To calculate downtime per year:</mark></b>
 
 Downtime (minutes/year) = (1 - Availability%) × 525,600
 
