@@ -40,6 +40,7 @@ New-Cluster -Name STCCluster -Node STCNode1, STCNode2 -StaticAddress "10.0.0.100
 
 #### 3. **Configure Certificates**
 Generate and install certificates on each node for endpoint authentication:
+
 ```sql
 CREATE CERTIFICATE AGCert WITH SUBJECT = 'AlwaysOnCert';
 CREATE ENDPOINT HadrEndpoint
@@ -47,6 +48,47 @@ CREATE ENDPOINT HadrEndpoint
     AS TCP (LISTENER_PORT = 5022)
     FOR DATABASE_MIRRORING (ROLE = ALL, AUTHENTICATION = CERTIFICATE AGCert, ENCRYPTION = REQUIRED);
 ```
+
+Use the `BACKUP CERTIFICATE` statement to export the certificate and its private key:
+
+```sql
+BACKUP CERTIFICATE AGCert
+TO FILE = 'C:\AGCert\AGCert.cer'
+WITH PRIVATE KEY (
+    FILE = 'C:\AGCert\AGCert.pvk',
+    ENCRYPTION BY PASSWORD = 'StrongPassword123!'
+);
+```
+
+- `AGCert.cer`: Contains the public key.
+- `AGCert.pvk`: Contains the private key, encrypted with a password.
+
+> Make sure the folder `C:\AGCert\` exists and is accessible. You can also use a network share if you're preparing for remote transfer.
+
+---
+
+#### Transfer the Certificate Files
+
+Copy both `.cer` and `.pvk` files to each secondary replica. You can use:
+- Secure file transfer (e.g., SCP, SFTP)
+- Shared folder with proper permissions
+- USB or external drive (if offline)
+
+#### Restore the Certificate on Each Secondary Replica
+
+On each secondary node, run:
+
+```sql
+CREATE CERTIFICATE AGCert
+FROM FILE = 'C:\AGCert\AGCert.cer'
+WITH PRIVATE KEY (
+    FILE = 'C:\AGCert\AGCert.pvk',
+    DECRYPTION BY PASSWORD = 'StrongPassword123!'
+);
+```
+
+> The password must match the one used during the backup. This restores both the public and private keys, enabling secure endpoint communication.
+
 
 #### 4. **Create the Availability Group**
 Use T-SQL to create the AG with the appropriate endpoints and replicas.
@@ -62,6 +104,3 @@ You can create a listener, but it must be registered manually in DNS. **Kerberos
 - **No FCI support**: Failover Cluster Instances cannot be used in domain-independent clusters.
 - **Manual listener registration**: You must manually configure DNS entries for AG listeners.
 
-
-
-If you're planning to deploy this in production, I can help you sketch out the certificate strategy, DNS setup, and failover logic. Just let me know how deep you want to go.
