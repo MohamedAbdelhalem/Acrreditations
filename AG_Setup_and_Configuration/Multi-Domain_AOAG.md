@@ -41,6 +41,7 @@ New-Cluster -Name STCCluster -Node STCNode1, STCNode2 -StaticAddress "10.0.0.100
 #### 3. **Configure Certificates**
 Generate and install certificates on each node for endpoint authentication:
 
+<mark><b>Primay Replica</mark></b>
 ```sql
 CREATE CERTIFICATE AGCert WITH SUBJECT = 'AlwaysOnCert';
 CREATE ENDPOINT HadrEndpoint
@@ -77,6 +78,7 @@ Copy both `.cer` and `.pvk` files to each secondary replica. You can use:
 #### Restore the Certificate on Each Secondary Replica
 
 On each secondary node, run:
+<mark><b>Secondary Replica</mark></b>
 
 ```sql
 CREATE CERTIFICATE AGCert
@@ -85,6 +87,11 @@ WITH PRIVATE KEY (
     FILE = 'C:\AGCert\AGCert.pvk',
     DECRYPTION BY PASSWORD = 'StrongPassword123!'
 );
+
+CREATE ENDPOINT HadrEndpoint
+    STATE = STARTED
+    AS TCP (LISTENER_PORT = 5022)
+    FOR DATABASE_MIRRORING (ROLE = ALL, AUTHENTICATION = CERTIFICATE AGCert, ENCRYPTION = REQUIRED);
 ```
 
 > The password must match the one used during the backup. This restores both the public and private keys, enabling secure endpoint communication.
