@@ -1,7 +1,7 @@
 ### Availability Percentage and Downtime Calculation
 
 |Availability %|Downtime per Year|
-|----------------|------------------|
+|--------|------------------|
 |99%     |~3.65 days|
 |99.9%   |~8.76 hours|
 |99.99%  |~52.6 minutes|
@@ -9,9 +9,13 @@
 
 <mark><b>To calculate downtime per year:</mark></b>
 
-Downtime (minutes/year) = (1 - Availability%) × 525,600
+`Downtime` (minutes/year) = (1 - Availability%) × ((60 minuts x 24 hours per day) x 365 days per year) = 525,600 minuts
 
-Downtime = (1 - 0.9999) × 525,600 = ~52.56 minutes/year
+`Downtime` (minutes/year) = (1 - Availability%) × 525,600 minuts
+
+99.999% downtime is:
+
+`Downtime` = (1 - 0.9999) × 525,600 = **~52.56 minutes/year**
 
 
 ### What Impacts Availability in Synchronous AG?
