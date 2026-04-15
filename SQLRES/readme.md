@@ -1,4 +1,4 @@
-![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/tree/main/SQLRES/Setup/1.png)
+![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/SQLRES/Setup/1.png)
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/tree/main/SQLRES/Setup/2.png)
 
