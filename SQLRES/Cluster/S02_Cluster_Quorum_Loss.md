@@ -69,9 +69,9 @@ Inside a datacenter:
 - Redundant NICs
 - Redundant switches
 
-You almost never lose 5 consecutive seconds of L2 connectivity unless the node is truly down.
+You almost never lose `5 consecutive` seconds of `L2` connectivity unless the node is truly down.
 
-That’s why the default is safe for 95% of same‑subnet clusters.
+That’s why the default is safe for `95%` of same‑subnet clusters.
 
 
 ### Cluster Heartbeat Interval:
