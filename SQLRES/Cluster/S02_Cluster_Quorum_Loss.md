@@ -31,7 +31,7 @@ The `RestartAction` parameter in Windows Failover Cluster settings specifies wha
 (Get-ClusterNode -Name "SQLSERVERVM02").NodeWeight = 1
 (Get-ClusterNode -Name "SQLSERVERVM03").NodeWeight = 1
 #Invalid (property does not exist)
-#(Get-ClusterResource -Name "Cluster Disk Witness").NodeWeight = 1
+(Get-ClusterResource -Name "Cluster Disk Witness").NodeWeight = 1
 #Witness voting is handled automatically, especially when Dynamic Quorum is enabled
 # File Share Witness does't have NodeWeight parameter, its always 1
 ```
