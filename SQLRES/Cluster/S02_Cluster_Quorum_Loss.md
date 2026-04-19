@@ -57,7 +57,22 @@ Get-Cluster | Select-Object SameSubnetDelay, SameSubnetThreshold
 # Modify the settings (example values)
 (Get-Cluster).SameSubnetThreshold = 5;  # Number of consecutive missed heartbeats
 ```
-By adjusting the `SameSubnetThreshold`, you can fine-tune the cluster's sensitivity to node failures on the same subnet, balancing between responsiveness and tolerance to transient network issues.```
+By adjusting the `SameSubnetThreshold`, you can fine-tune the cluster's sensitivity to node failures on the same subnet, balancing between responsiveness and tolerance to transient network issues.
+
+**Why 5 seconds is fine for same‑subnet clusters**
+
+Inside a datacenter:
+
+- Same rack
+- Same switch
+- Same VLAN
+- Redundant NICs
+- Redundant switches
+
+You almost never lose 5 consecutive seconds of L2 connectivity unless the node is truly down.
+
+That’s why the default is safe for 95% of same‑subnet clusters.
+
 
 ### Cluster Heartbeat Interval:
 The cluster heartbeat interval determines how frequently heartbeat signals are sent between nodes. The default interval is 1 second. You can check and adjust this setting using PowerShell:
