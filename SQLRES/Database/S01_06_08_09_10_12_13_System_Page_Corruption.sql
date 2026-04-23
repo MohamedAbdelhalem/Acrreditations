@@ -8,7 +8,7 @@
 6- SGAM page corruption
 */
 --After checking the error log and after some steps the main issue is that the database
---has been corruped on the boot system page (9) and there is not option rather than restore
+--has been corruped on the boot system page (9) and there is no option rather than restore
 --it from the SECONDARY node after fixing it.
 
 --open sqlcmd and start to execute these commands
@@ -33,6 +33,9 @@ dbcc checkdb (AdventureWorks2019) with no_infomsgs
 alter database AdventureWorks2019 set emergency with rollback immediate
 dbcc checkdb (AdventureWorks2019) with no_infomsgs
 -------
+
+--you can use auto seeding 
+--or manual as the following steps
   
 :CONNECT SQLSERVERVM02
 BACKUP DATABASE [AdventureWorks2019] 
