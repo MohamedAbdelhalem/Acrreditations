@@ -34,7 +34,7 @@ try to bring up the database and check the Always-On status
 If you restarted the service of the SQL, databases in the current node will turn into `Recovery Pending` state.
 
 
-to resolve it force failover allow data loss on the former primary node (AlwaysOn2)
+to resolve it force failover allow data loss on the `former primary node` (AlwaysOn2)
 
 ```SQL
 CONNECT: AlwaysOn2
@@ -43,7 +43,7 @@ Alter Availability Group [AOCorp] Force_Failover_Allow_Data_Loss
 go
 ```
 
-then bring databases online to start recover the databases
+Then alter databases online to start recovering the databases.
 
 ```SQL
 CONNECT: AlwaysOn2
@@ -54,7 +54,7 @@ Alter Database AdventureWorkDW Set Online
 go
 ```
 
-then bring databases resume the sync from the secondary nodes
+Then alter databases to resume the sync from the `secondary nodes`
 
 #### Approach 1 HADR RESUME
 ```SQL
