@@ -11,7 +11,7 @@ Initiate the issue
 
 Now, we have lost the primary node (AlwaysOn2) because the public network card went down
 
-So, the cluster service (ClusSvc) goes down either
+So, the cluster service (ClusSvc) goes down as well.
 
 Turn on the public card
 
