@@ -34,7 +34,7 @@ try to bring up the database and check the Always-On status
 If you restarted the service of the SQL, databases in the current node will turn into `Recovery Pending` state.
 
 
-to resolve it force failover allow data loss on the previous primary node (AlwaysOn2)
+to resolve it force failover allow data loss on the former primary node (AlwaysOn2)
 
 ```SQL
 CONNECT: AlwaysOn2
