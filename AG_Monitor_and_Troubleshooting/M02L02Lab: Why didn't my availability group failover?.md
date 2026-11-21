@@ -61,3 +61,6 @@ Selct-String -Path "Cluster.log" -Pattern "[RES] SQL Server" -SimpleMatch -Conte
 ```
 
 <mark>We are looking for</mark> "**ERR \[RES\] SQL Server Availability Group \<AOCorp\>**: \[hadrag\] ODBC Error ........ \[SQL Server\]**Cannot alter Availability Group 'AOCorp', because it does not exist or you do not have permission. (15151)**" 
+
+
+https://learn.microsoft.com/en-us/troubleshoot/sql/database-engine/availability-groups/troubleshooting-automatic-failover-problems#case-2-insufficient-nt-authoritysystem-account-permissions
