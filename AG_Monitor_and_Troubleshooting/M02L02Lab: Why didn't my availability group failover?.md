@@ -62,4 +62,4 @@ Selct-String -Path "Cluster.log" -Pattern "[RES] SQL Server" -SimpleMatch -Conte
 
 <mark>We are looking for</mark> "**ERR \[RES\] SQL Server Availability Group \<AOCorp\>**: \[hadrag\] ODBC Error ........ \[SQL Server\]**Cannot alter Availability Group 'AOCorp', because it does not exist or you do not have permission. (15151)**" 
 
-Here is a [Link](https://learn.microsoft.com) that shows one of the official documents from Microsoft talks about "NT AUTHORITY\SYSTEM".
+Here is a [Link](https://learn.microsoft.com) that shows one of the official documents from Microsoft talks about "**NT AUTHORITY\SYSTEM**".
