@@ -60,4 +60,4 @@ Selct-String -Path "Cluster.log" -Pattern "[RES] SQL Server" -SimpleMatch > D:\S
 Selct-String -Path "Cluster.log" -Pattern "[RES] SQL Server" -SimpleMatch -Context 5,10 > D:\SQLCluster\Cluster.log
 ```
 
-We are looking for "**ERR \[RES\] SQL Server Availability Group <AGNAME>**: \[hadrag\] ODBC Error ........ \[SQL Server\]**Cannot alter Availability Group 'AGNAME', because it does not exist or you do not have permission. (15151)**" 
+We are looking for "**ERR \[RES\] SQL Server Availability Group 'AOCorp'**: \[hadrag\] ODBC Error ........ \[SQL Server\]**Cannot alter Availability Group 'AOCorp', because it does not exist or you do not have permission. (15151)**" 
