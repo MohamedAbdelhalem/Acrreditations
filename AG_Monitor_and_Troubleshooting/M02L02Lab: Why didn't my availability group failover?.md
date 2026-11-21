@@ -49,3 +49,15 @@ Once the NIC is enabled and permissions are granted, proceed to start the AG:
 Start-ClusterResource -Name "AOCorp"
 
 ```
+
+To troubleshoot the issue from the cluster side
+
+```powershell
+Get-ClusterLog -UseLocalTime -TimeSpan 15
+cd C:\Windows\Cluster\Reports
+Selct-String -Path "Cluster.log" -Pattern "[RES] SQL Server" -SimpleMatch > D:\SQLCluster\Cluster.log
+#if you need more lines to investigate, 5 lines before, and 10 lines after 
+Selct-String -Path "Cluster.log" -Pattern "[RES] SQL Server" -SimpleMatch -Context 5,10 > D:\SQLCluster\Cluster.log
+```
+
+We are looking for "ERR [\RES\] SQL Server Availability Group <AGNAME>: [\hadrag\] ODBC Error ........ [\SQL Server\]Cannot alter Availability Group 'AGNAME', because it does not exist or you do not have permission. (15151)" 
