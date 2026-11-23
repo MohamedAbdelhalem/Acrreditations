@@ -14,6 +14,7 @@ Stop-Process -Name SQLAgent$INST1
 Start-Process -Name SQLAgent$INST1
 ```
 
+![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/if_restart_is_unsuccessful_fail_over_all_resources_in_the_role.png)
 
 
 ### 2. In this scenario you are restarting the SQL Server to trigger the automatic failover
