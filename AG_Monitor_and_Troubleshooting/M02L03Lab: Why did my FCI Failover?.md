@@ -4,14 +4,14 @@ To simulation failure to test automatic `failover`
 
 ### 1. In this scenario you are failing the SQL Server agent to attempt to start it after disable the Agent XPs and when it failed to bring it online it will trigger the automatic failover for the other resource
 ```powershell
-sqlcmd -S .\INST1 -E
-exec sp_configure 'show advanced options',1;recofigure;
-go
-exec sp_configure 'Agent XPs',0;recofigure;
-go
-exit
-Stop-Process -Name SQLAgent$INST1
-Start-Process -Name SQLAgent$INST1
+SQLCMD -S .\INST1 -E
+EXEC sp_configure 'show advanced options',1;recofigure;
+GO
+EXEC sp_configure 'Agent XPs',0;recofigure;
+GO
+Exit
+Stop-Service -Name SQLAgent$INST1
+Start-Service -Name SQLAgent$INST1
 ```
 
 ![alt text](https://github.com/MohamedAbdelhalem/Acrreditations/blob/main/AG_Monitor_and_Troubleshooting/media/if_restart_is_unsuccessful_fail_over_all_resources_in_the_role.png)
