@@ -7,21 +7,36 @@ You can determine the number of `VLF`s using the queries below:
 If your version is older than **SQL Server 2016 Service Pack 2 (SP2)**, use this query:
 
 ```sql
-use ProdDB
+use master
 go
-create table #loginfo (RecoveryUnitId int, FileId int, FileSize bigint,
-StartOffset bigint, FSeqNo int, Status int, Parity int, CreateLSN varchar(100))
+declare @db_vlf table (database_id int, database_name varchar(500),RecoveryUnitId int, FileId int, FileSize bigint,StartOffset bigint, FSeqNo int, Status int, Parity int, CreateLSN varchar(100))
+declare @sql varchar(max), @db_name varchar(500)
+declare db cursor fast_forward
+for
+select name 
+from sys.databases 
+where database_id > 4 
+and state_desc = 'online'
 
-insert into #loginfo
-exec ('DBCC loginfo (ProdDB)')
+open db
+fetch next from db into @db_name
+while @@FETCH_STATUS = 0
+begin
+set @sql = 'use ['+@db_name+']
+exec (''DBCC loginfo ('+''''+''''+@db_name+''''+''''+')'')'
 
-select db_id() database_id,
-fileid file_id, StartOffset vlf_begin_offset,
-cast(filesize/1024.0/1024.0 as decimal(10,2)) vlf_size_mb,
-FSeqNo vlf_sequence_number,
-case when status > 0 then 1 else 0 end vlf_active,
-status vlf_status, parity vlf_parity
-from #loginfo
+insert into @db_vlf (RecoveryUnitId, FileId, FileSize,StartOffset, FSeqNo, Status, Parity, CreateLSN)
+exec(@sql)
+update @db_vlf set database_id = db_id(@db_name),database_name = @db_name where database_id is null
+fetch next from db into @db_name
+end
+close db
+deallocate db
+
+select database_id, database_name, format(count(*),'###,###,###') vlf_count, 
+cast(sum(filesize)/1024.0/1024.0 as decimal(10,2)) vlfs_size_total_mb
+from @db_vlf 
+group by database_id, database_name
 ```
 
 If your SQL Server version is equal to or higher, simply use the DMF `sys.dm_db_log_info`
