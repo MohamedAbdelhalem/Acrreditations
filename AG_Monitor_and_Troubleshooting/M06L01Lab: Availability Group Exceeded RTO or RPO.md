@@ -51,7 +51,7 @@ INSERT INTO @recusive_sessions
 SELECT * FROM recusive_sessions 
 OPTION (MAXRECURSION '+cast(@maxrecursion as nvarchar(100))+')
 
-select *
+select distinct *
 from @recusive_sessions
 order by level'
 
