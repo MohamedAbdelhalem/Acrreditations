@@ -58,7 +58,7 @@ order by level'
 insert into @blocking_sessions
 exec sp_executesql @dynamic_sql
 
-select p.spid, isnull(bs.level,100000) level, p.loginame, db_name(p.dbid) database_name, 
+select p.spid, cast(isnull(bs.level,100000) as bigint) levelup, p.loginame, db_name(p.dbid) database_name, 
 case 
 when blocked < 0 then 0
 when blocked > 0 then 1
@@ -83,7 +83,7 @@ left outer join sys.dm_exec_requests r
 on p.spid = r.session_id
 left outer join sys.dm_exec_connections c
 on p.spid = c.session_id
-order by bs.level, flag
+order by levelup, flag
 
 ```
 
