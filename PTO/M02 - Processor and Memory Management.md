@@ -40,7 +40,7 @@ CXPACKET% = \frac{20000}{100000} × 100 =20%$
 
 CXPACKET\%=\frac{20000}{100000}\times100=20\%CXPACKET%=10000020000​×100=20%
 
-## $CXPACKET\per = \frac{20000}{100000} x 100 $ 
+## $CXPACKET\%$ = \frac{20000}{100000} x 100 $ 
 
 Interpretation: CXPACKET represents 20% of the selected wait time.
 
