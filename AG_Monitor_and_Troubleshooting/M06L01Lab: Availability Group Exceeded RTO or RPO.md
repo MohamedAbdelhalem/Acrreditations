@@ -70,7 +70,7 @@ when p.status = 'background' and blocked = 0 then 6
 else 100
 end flag,
 p.status,lastwaittype, p.cmd, s.text, --s.current_sql,
-((select blocker.text from sys.dm_exec_connections cblocker cross apply sys.dm_exec_sql_text(cblocker.most_recent_sql_handle) blocker where cblocker.session_id = p.spid FOR XML PATH(''),TYPE)) blocker_text, 
+((select blocker.text from sys.dm_exec_connections cblocker cross apply sys.dm_exec_sql_text(cblocker.most_recent_sql_handle) blocker where cblocker.session_id = p.blocked FOR XML PATH(''),TYPE)) blocker_text, 
 convert(varchar(10), dateadd(s, datediff(s, r.start_time, getdate()), '2000-01-01'), 108) duration,
 waittime, blocked, bs.blocking_session_id, hostname, c.client_net_address, program_name
 from sys.sysprocesses p left outer join @blocking_sessions bs
