@@ -1,0 +1,29 @@
+Create or ALter Function dbo.CPU_Pct(@all bit)
+returns @cpu table (capture_datetime datetime, SQLServerCPUPercent int, SystemIdlePercent int, OtherProcessCPUPercent int)
+as
+begin
+declare @ts bigint;
+
+select @ts = cpu_ticks / (cpu_ticks / ms_ticks)
+from sys.dm_os_sys_info;
+
+insert into @cpu
+select top (case @all when 1 then 1000 else 1 end) 
+DATEADD(ms, -1 * (@ts - [timestamp]), GETDATE()) AS SampleTime,
+record.value('(./Record/SchedulerMonitorEvent/SystemHealth/ProcessUtilization)[1]', 'int') AS SQLServerCPUPercent,
+record.value('(./Record/SchedulerMonitorEvent/SystemHealth/SystemIdle)[1]', 'int') AS SystemIdlePercent,
+100 - 
+record.value('(./Record/SchedulerMonitorEvent/SystemHealth/ProcessUtilization)[1]', 'int') - 
+record.value('(./Record/SchedulerMonitorEvent/SystemHealth/SystemIdle)[1]', 'int')
+AS OtherProcessCPUPercent
+FROM
+(
+    SELECT [timestamp], CONVERT(XML, record) AS record
+    FROM sys.dm_os_ring_buffers
+    WHERE ring_buffer_type = N'RING_BUFFER_SCHEDULER_MONITOR'
+      AND record LIKE '%<SystemHealth>%'
+) AS x
+ORDER BY SampleTime DESC;
+
+return
+end
