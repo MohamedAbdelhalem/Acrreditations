@@ -22,7 +22,7 @@ If parallelism-related waits account for more than 20% of the total relevant wai
 
 The formula would be:
 
-## $Parallelism Wait = \frac{Total Relevant Wait Time}{Parallelism Wait Time} x 100$
+## $Parallelism Wait\\% = \frac{Total Relevant Wait Time}{Parallelism Wait Time} x 100$
 
 For example:
 
