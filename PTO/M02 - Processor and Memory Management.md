@@ -36,7 +36,11 @@ For example:
 
 Here:
 
-CXPACKET%=20000100000×100=20%CXPACKET\%=\frac{20000}{100000}\times100=20\%CXPACKET%=10000020000​×100=20%
+CXPACKET% = \frac{20000}{100000} × 100 =20%$
+
+CXPACKET\%=\frac{20000}{100000}\times100=20\%CXPACKET%=10000020000​×100=20%
+
+## $CXPACKET = \frac{Total Relevant Wait Time}{Parallelism Wait Time} x 100$
 
 Interpretation: CXPACKET represents 20% of the selected wait time.
 
