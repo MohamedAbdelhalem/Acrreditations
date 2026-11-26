@@ -24,4 +24,4 @@ The formula would be:
 
 Parallelism Wait %
 
-$Parallelism Wait = \frac{Total Relevant Wait Time}{Parallelism Wait Time}$
+$Parallelism Wait = \frac{Total Relevant Wait Time}{Parallelism Wait Time} x 100$
